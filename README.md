@@ -7,10 +7,7 @@ O projeto pedelogo-catalogo é um projeto desenvolvido em .NET. O projeto tem co
 k3d cluster create meucluster --agents 3 --servers 2 -p 80:30000@loadbalancer" -p "8080:31000@loadbalancer" -p "8282:32000@loadbalancer" -p "9090:31500@loadbalancer"
 
 ### Observação do inicio do cluster
-Executar kubectl apply -f k8s/db -f k8s/api
-
-### Criação do namespace
-kubectl create ns loki
+Executar kubectl apply -f k8s -R
 
 ### Criação do Loki
 helm upgrade --install loki grafana/loki-stack --namespace loki --values values-loki.yaml
@@ -23,6 +20,7 @@ Prometheus: http://localhost:8080/
 Alert Manager: http://localhost:8282/
 Application: http://localhost/swagger
 Grafana: http://localhost:9090/
+Loki: Para acesso do promtail, terá que ser feito um port-forward de um dos pods, kubectl port-forward svc/loki 3100:3100 e então acessar http://localhost:3100/metrics
 Promtail: Para acesso do promtail, terá que ser feito um port-forward de um dos pods, kubectl port-forward pod/NOME_POD 3101:3101 e então acessar http://localhost:3101
 
 
@@ -37,10 +35,7 @@ The project pedelogo-catalogo is a project developed in .NET. The project goal i
 k3d cluster create meucluster --agents 3 --servers 2 -p 80:30000@loadbalancer" -p "8080:31000@loadbalancer" -p "8282:32000@loadbalancer" -p "9090:31500@loadbalancer"
 
 ### Cluster initialization
-Executar kubectl apply -f k8s/db -f k8s/api
-
-### Creation of namespace
-kubectl create ns loki
+Execute kubectl apply -f k8s -R
 
 ### Creation of Loki
 helm upgrade --install loki grafana/loki-stack --namespace loki --values values-loki.yaml
@@ -53,4 +48,5 @@ Prometheus: http://localhost:8080/
 Alert Manager: http://localhost:8282/
 Aplicação: http://localhost/swagger
 Grafana: http://localhost:9090/
+Loki: For access loki, you have to use port-forward, kubectl port-forward svc/loki 3101:3101 then access http://localhost:3100/metrics
 Promtail: For access promtail, you have to use port-forward of one of the pods, kubectl port-forward pod/POD_NAME 3101:3101 then access http://localhost:3101

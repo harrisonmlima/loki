@@ -31,19 +31,12 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 80
           periodSeconds: 10
           initialDelaySeconds: 3
           failureThreshold: 3
           successThreshold: 1
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          periodSeconds: 10
-          initialDelaySeconds: 3
-          failureThreshold: 5
-          successThreshold: 1
+        
         envFrom:
           - configMapRef:
               name: api-configmap
