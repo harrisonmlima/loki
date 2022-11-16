@@ -21,7 +21,7 @@ kubectl get secret --namespace loki loki-grafana -o jsonpath="{.data.admin-passw
 ### Acesso das ferramentas
 Prometheus: http://localhost:8080/
 Alert Manager: http://localhost:8282/
-Aplicação: http://localhost/swagger
+Application: http://localhost/swagger
 Grafana: http://localhost:9090/
 Promtail: Para acesso do promtail, terá que ser feito um port-forward de um dos pods, kubectl port-forward pod/NOME_POD 3101:3101 e então acessar http://localhost:3101
 

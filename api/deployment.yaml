@@ -28,6 +28,22 @@ spec:
           requests:
             memory: "128Mi"
             cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          periodSeconds: 10
+          initialDelaySeconds: 3
+          failureThreshold: 3
+          successThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          periodSeconds: 10
+          initialDelaySeconds: 3
+          failureThreshold: 5
+          successThreshold: 1
         envFrom:
           - configMapRef:
               name: api-configmap
